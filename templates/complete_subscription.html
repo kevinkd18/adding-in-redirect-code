@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 4: Complete Subscription</title>
+    <script>
+        let countdown = 5;
+        let countdownTimer = setInterval(function() {
+            document.getElementById("timer").innerText = countdown + " seconds remaining...";
+            countdown--;
+            if (countdown < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("getSubscriptionBtn").style.display = "block";
+            }
+        }, 1000);
+
+        function onGetSubscriptionClick() {
+            fetch(`/verify_success/{{ unique_id }}`, { method: "POST" })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(() => alert("An error occurred."));
+        }
+    </script>
+</head>
+<body>
+    <h1>Step 4: Complete Your Subscription</h1>
+    <p id="timer">5 seconds remaining...</p>
+    <button id="getSubscriptionBtn" style="display:none" onclick="onGetSubscriptionClick()">Get Subscription</button>
+</body>
+</html>

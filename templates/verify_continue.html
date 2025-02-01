@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 2: Continue Verification</title>
+    <script>
+        let countdown = 5;
+        let countdownTimer = setInterval(function() {
+            document.getElementById("timer").innerText = countdown + " seconds remaining...";
+            countdown--;
+            if (countdown < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("continueBtn").style.display = "block";
+            }
+        }, 1000);
+    </script>
+</head>
+<body>
+    <h1>Step 2: Continue Verification</h1>
+    <p id="timer">5 seconds remaining...</p>
+    <button id="continueBtn" style="display:none" onclick="window.location.href='{{ webhook_url2 }}/verify_next/{{ unique_id }}'">Continue</button>
+</body>
+</html>
